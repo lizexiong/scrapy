@@ -24,8 +24,11 @@ class Spidertest1Pipeline(object):
 
 import json
 class Spidertest1JsonPipeline(object):
+	def __init__(self, fpath):
+		self.fpath = fpath
+
 	def open_spider(self, spider):
-		self.save = open('item.json','w',encoding='utf-8')
+		self.save = open(self.fpath,'w',encoding='utf-8')
 
 	def close_spider(self,spider):
 		self.save.close()
@@ -34,3 +37,7 @@ class Spidertest1JsonPipeline(object):
 		info = json.dumps(dict(item),ensure_ascii=False) + "\n"	#ensure_ascii默认是unicode
 		self.save.write(info)
 		return item
+
+	@classmethod
+	def from_crawler(cls,crawler):
+		return cls(fpath = crawler.settings.get("JSON_PATH"))

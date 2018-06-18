@@ -14,7 +14,7 @@ BOT_NAME = 'spiderTest1'
 SPIDER_MODULES = ['spiderTest1.spiders']
 NEWSPIDER_MODULE = 'spiderTest1.spiders'
 
-
+JSON_PATH = 'item1.json'
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'spiderTest1 (+http://www.yourdomain.com)'
 USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; Win64; x64;"
