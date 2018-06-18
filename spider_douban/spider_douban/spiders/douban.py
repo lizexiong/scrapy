@@ -2,6 +2,10 @@
 import scrapy
 from scrapy import Request
 import re
+from scrapy.loader import ItemLoader
+from ..items import SpiderDoubanItem
+
+
 
 class DoubanSpider(scrapy.Spider):
     name = 'douban'
@@ -23,12 +27,19 @@ class DoubanSpider(scrapy.Spider):
     	return info
 
     def details_parse(self, response):
-        director = response.xpath("//a[@rel='v:directedBy']/text()").extract()		#导演
-        starring = response.xpath("//a[@rel='v:starring']/text()").extract()		#主演
-        mvtype = response.xpath("//span[@rel='v:genre']/text()").extract()			#电影类型
-        showplace = self.getInfoByRe(response.text, r'制片国家/地区:</span>(.+?)<br/>')		#制作国家
-        lan = self.getInfoByRe(response.text, r'语言:</span>(.+?)<br/>')			#语言
-        mvnames = self.getInfoByRe(response.text, r'又名:</span>(.+?)<br/>')		#电影别名
-        mvshowtime = response.xpath("//span[@property='v:initialReleaseDate']/text()").extract()		#电影上映时间
-        mvtimelen = response.xpath("//span[@property='v:runtime']/text()").extract()			#电影时长
-        print (director,starring,mvtype,showplace,lan,mvnames,mvshowtime,mvtimelen)
+    	item = ItemLoader(item=SpiderDoubanItem(), response=response)
+    	item.add_xpath('director', "//a[@rel='v:directedBy']/text()")	#导演
+    	item.add_xpath('starring', "//a[@rel='v:starring']/text()")		#主演
+    	item.add_xpath('mvtype', "//span[@property='v:genre']/text()")		#电影类型
+    	showplace = self.getInfoByRe(response.text, r'制片国家/地区:</span>(.+?)<br/>')		#制作国家
+    	item.add_value('showplace',showplace)
+    	lan = self.getInfoByRe(response.text, r'语言:</span>(.+?)<br/>')			#语言
+    	item.add_value('lan',lan)
+    	mvnames = self.getInfoByRe(response.text, r'又名:</span>(.+?)<br/>')		#电影别名
+    	item.add_value('mvnames',mvnames)
+    	item.add_xpath('mvshowtime', "//span[@property='v:initialReleaseDate']/text()")		#电影上映时间
+    	item.add_xpath('mvtimelen', "//span[@property='v:runtime']/text()")		#电影类型
+    	return item.load_item()
+
+
+

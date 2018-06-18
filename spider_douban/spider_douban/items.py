@@ -11,4 +11,11 @@ import scrapy
 class SpiderDoubanItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    pass
+    director = scrapy.Field()
+    starring = scrapy.Field()
+    mvtype = scrapy.Field()
+    showplace = scrapy.Field()
+    lan = scrapy.Field()
+    mvnames = scrapy.Field()
+    mvshowtime = scrapy.Field()
+    mvtimelen = scrapy.Field()
