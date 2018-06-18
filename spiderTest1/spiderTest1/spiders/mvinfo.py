@@ -21,7 +21,7 @@ class MvinfoSpider(scrapy.Spider):
         	# self.fsave.write("\n")
         	item = Spidertest1Item()
         	name = i.xpath("span[1]/text()").extract()
-        	item['name'] = name
+        	item['name'] = name[0]
         	yield item
 
         nextpage = response.xpath("//span[@class='next']/a/@href").extract()
