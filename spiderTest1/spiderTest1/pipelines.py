@@ -8,6 +8,25 @@
 
 from scrapy.exceptions import DropItem #过滤信息的方法
 
+import pymysql
+pymysql.install_as_MySQLdb()
+class Spidertest1MysqlPipeline(object):
+	def open_spider(self, spider):
+		self.con = pymysql.connect(host="192.168.100.1", user='root', password="huawei",\
+									database="scrapy",charset="utf8",
+			)
+		self.cur = self.con.cursor()
+		print ("*" * 1000)
+
+	def close_spider(self,spider):
+		self.con.commit()
+		self.con.close()
+
+	def process_item(self, item, spider):
+		print (item['name'],'*' * 50)
+		self.cur.execute("insert into mvtitle values(%s)",item["name"])
+		return item
+
 class Spidertest1Pipeline(object):
 	def open_spider(self, spider):
 		self.save = open('item.txt','w')

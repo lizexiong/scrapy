@@ -19,7 +19,7 @@ JSON_PATH = 'item1.json'
 #USER_AGENT = 'spiderTest1 (+http://www.yourdomain.com)'
 USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; Win64; x64;"
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -67,6 +67,7 @@ ROBOTSTXT_OBEY = True
 ITEM_PIPELINES = {
    'spiderTest1.pipelines.Spidertest1Pipeline': 300,
    'spiderTest1.pipelines.Spidertest1JsonPipeline': 301,
+   'spiderTest1.pipelines.Spidertest1MysqlPipeline': 302,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -89,4 +90,4 @@ ITEM_PIPELINES = {
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
-FEED_EXPORT_ENCODING = 'utf-8'
+HTTPERROR_ALLOWED_CODES = [403]
