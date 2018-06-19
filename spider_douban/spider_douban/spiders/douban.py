@@ -26,12 +26,10 @@ class DoubanSpider(scrapy.Spider):
     		info = {'mvname':mvname}
     		yield Request(href,meta=info, callback=self.details_parse)
 
-
     	nexturl = response.xpath("//link[@rel='next']/@href").extract()
     	if nexturl:
     		nexturl = nexturl[0]
     		req_url = baseurl + nexturl
-    		print (req_url)
     		yield Request(req_url, callback=self.parse)
 
 
