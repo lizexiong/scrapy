@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Scrapy settings for spiderTest2 project
+# Scrapy settings for scrapy_post project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -9,17 +9,17 @@
 #     https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'spiderTest2'
+BOT_NAME = 'scrapy_post'
 
-SPIDER_MODULES = ['spiderTest2.spiders']
-NEWSPIDER_MODULE = 'spiderTest2.spiders'
+SPIDER_MODULES = ['scrapy_post.spiders']
+NEWSPIDER_MODULE = 'scrapy_post.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'spiderTest2 (+http://www.yourdomain.com)'
+#USER_AGENT = 'scrapy_post (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = False
+ROBOTSTXT_OBEY = True
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -47,15 +47,14 @@ ROBOTSTXT_OBEY = False
 # Enable or disable spider middlewares
 # See https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'spiderTest2.middlewares.Spidertest2SpiderMiddleware': 543,
+#    'scrapy_post.middlewares.ScrapyPostSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
-DOWNLOADER_MIDDLEWARES = {
-	'spiderTest2.middlewares.Custom': 543,
-   # 'spiderTest2.middlewares.Spidertest2DownloaderMiddleware': 543,
-}
+#DOWNLOADER_MIDDLEWARES = {
+#    'scrapy_post.middlewares.ScrapyPostDownloaderMiddleware': 543,
+#}
 
 # Enable or disable extensions
 # See https://doc.scrapy.org/en/latest/topics/extensions.html
@@ -66,7 +65,7 @@ DOWNLOADER_MIDDLEWARES = {
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {
-#    'spiderTest2.pipelines.Spidertest2Pipeline': 300,
+#    'scrapy_post.pipelines.ScrapyPostPipeline': 300,
 #}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
